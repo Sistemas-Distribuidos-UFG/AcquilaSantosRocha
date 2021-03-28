@@ -61,7 +61,7 @@ module Help
         },
         :date => :blue,
         :logger => :cyan,
-        :message => :magenta
+        :message => :white
       )
 
       Logging.appenders.stdout(
@@ -115,7 +115,7 @@ module Help
         },
         :date => :blue,
         :logger => :cyan,
-        :message => :magenta
+        :message => :white
       )
 
       Logging.appenders.stdout(

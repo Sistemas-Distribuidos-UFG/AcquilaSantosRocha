@@ -41,7 +41,6 @@ class Client
                      correlation_id: call_id,
                      reply_to: reply_queue.name)
 
-    # wait for the signal to continue the execution
     lock.synchronize { condition.wait(lock) }
 
     response
@@ -211,7 +210,7 @@ class Main
 
     response = client.call
     response = Message.loads response
-    
+
     logger.info "Server responded #{response["data"]}" if logger
 
     client.stop
