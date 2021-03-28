@@ -1,7 +1,4 @@
-# RPC
-## Client Server RPC in ruby langauge
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+# RPC in ruby
 
 ## Requirements
 - ruby (2.7.0p0)
