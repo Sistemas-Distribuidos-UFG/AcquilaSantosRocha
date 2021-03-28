@@ -2,19 +2,23 @@
 
 require 'bunny'
 require 'thread'
-require_relative 'message'
 require 'logging'
 
+require_relative 'message'
+require_relative 'help'
+
 include Message
+include Help
 
 
 class Client
   attr_accessor :call_id, :response, :lock, :condition, :connection,
-                :channel, :server_queue_name, :reply_queue, :exchange
+                :channel, :server_queue_name, :reply_queue, :exchange, :logger
 
-  def initialize server_queue_name
+  def initialize server_queue_name, logger
     @connection = Bunny.new(automatically_recover: false)
     @connection.start
+    @logger = logger
 
     @channel = connection.create_channel
     @exchange = channel.default_exchange
@@ -31,6 +35,7 @@ class Client
    def call
     @call_id = generate_uuid
     jj = self._gatherData
+    logger.info "Waiting server solutuion for #{Message.loads(jj)["data"]}" if logger
     exchange.publish(jj,
                      routing_key: server_queue_name,
                      correlation_id: call_id,
@@ -56,7 +61,7 @@ class Client
 
     reply_queue.subscribe do |_delivery_info, properties, payload|
       if properties[:correlation_id] == self.call_id
-        self.response = payload.to_i
+        self.response = payload
         self.lock.synchronize { self.condition.signal }
       end
     end
@@ -190,89 +195,31 @@ class Main
   def initialize problem_number, logger
     @logger = logger
     @problem_number = problem_number
-
-    execute
-
+    if @problem_number.to_i > 9
+      logger.fatal "Problem #{problem_number} not implemented" if logger
+      exit
+    end
   end
 
 
   def execute 
     question_class = Object.const_get("Question#{problem_number}")
-    client = question_class.new('rpc_queue')
+    client = question_class.new('rpc_queue', logger)
 
-    logger.info "Requesting solution to problem #{problem_number}" if logger
+    logger.info "Resolving problem #{problem_number}" if logger
+    logger.info "Requesting data from user" if logger
+
     response = client.call
-    logger.info "Server respond #{response}" if logger
+    response = Message.loads response
+    
+    logger.info "Server responded #{response["data"]}" if logger
 
     client.stop
   end
 end
 
 
-USAGE = <<ENDUSAGE
-Usage:
-   RPC Client [-h] problem [-al activate_log]
-ENDUSAGE
+logger = Help.init
 
-HELP = <<ENDHELP
-   -h,  --help            Show this help.
-   -al, --activate_log    Activate the console log.
-   -l,  --log_level       Set the log level.
-ENDHELP
-
-ARGS = { :shell=>'default', :writer=>'chm' } # Setting default values
-UNFLAGGED_ARGS = [ :problem ]              # Bare arguments (no flag)
-next_arg = UNFLAGGED_ARGS.first
-ARGV.each do |arg|
-  case arg
-    when '-h','--help'            then ARGS[:help]              = true
-    when '-al','--activate_log'   then ARGS[:activate_log]      = true
-    when '-l','--log_level'       then next_arg                 = :log_level
-    else
-      if next_arg
-        ARGS[next_arg] = arg
-        UNFLAGGED_ARGS.delete( next_arg )
-      end
-      next_arg = UNFLAGGED_ARGS.first
-  end
-end
-
-
-if ARGS[:help] or !ARGS[:problem]
-  puts USAGE
-  puts HELP if ARGS[:help]
-  exit
-end
-
-if ARGS[:activate_log]
-  Logging.color_scheme( 'bright',
-    :levels => {
-      :info  => :green,
-      :warn  => :yellow,
-      :error => :red,
-      :fatal => [:white, :on_red]
-    },
-    :date => :blue,
-    :logger => :cyan,
-    :message => :magenta
-  )
-
-  Logging.appenders.stdout(
-    'stdout',
-    :layout => Logging.layouts.pattern(
-      :pattern => '[%d] %-5l %c: %m\n',
-      :color_scheme => 'bright'
-    )
-  )
-  @logger = Logging.logger('rpc_client.log')
-  @logger.add_appenders 'stdout'
-  if ARGS[:log_level] and [:info, :warn, :error, :fatal].include? ARGS[:log_level].to_sym
-    @logger.level = ARGS[:log_level].to_sym
-  else
-    @logger.level = :info
-  end
-end
-
-
-mainobj = Main.new ARGS[:problem], @logger
+mainobj = Main.new ARGS[:problem], logger
 mainobj.execute

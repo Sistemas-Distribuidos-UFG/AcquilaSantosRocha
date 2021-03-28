@@ -3,7 +3,6 @@ require "json"
 module Message
 	def dumps _hash, p
 		unless _hash.nil? or _hash == {}
-
 			return JSON.dump({problem:p, data: _hash})
 		end
 		return ''
