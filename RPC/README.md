@@ -9,7 +9,8 @@
 
 ## Instalation
 Requires [RabbitMQ](https://www.rabbitmq.com/download.html) 3.8.14 to run.
-Install ruby
+
+Requires Ruby
 ```sh
 sudo apt-get install ruby-full
 ```
