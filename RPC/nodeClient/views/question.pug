@@ -7,27 +7,41 @@ block content
             | #{question.name}
             br
             br  
-            form(action='/request', method='POST')
+
+            form(action='/request', method='POST', id="input-form")
+                input(type="hidden" id="problem" value=`${question.id}`)
                 each qu in question.input
                     div(class="input-group mb-3", style="width: 50%;margin: auto;")
                       div(class="input-group-prepend")
                         span(class="input-group-text", id="basic-addon3", style="width:80px;margin:auto") #{qu}
+                      input(type="text", class="form-control", id=`${qu.toLowerCase()}`, aria-describedby="basic-addon3")
+                      
 
-                      input(type="text", class="form-control", id="basic-url", aria-describedby="basic-addon3")
                     
                 input(type='submit', value='Submit')
             script.
+                function makeDict(inputs) {
+                    var res = {"problem": 0, "data":{}};
+                    for(var i = 0; i < inputs.length; i++) {
+                        var ipt = inputs[i];
+                        
+                        if ($(ipt).val() == "Submit") 
+                            continue;
+                        if (ipt.id == "problem") 
+                        {
+                            res["problem"] = $(ipt).val();
+                            continue;
+                        }
+                        res["data"][ipt.id] = $(ipt).val();
+                    }
+                    return res;
+                }
 
                 function makeRequest() {
-                    $.ajax({
-                        url: 'http://127.0.0.1:8000/request',
-                        method: 'POST',
-                        data: JSON.stringify({ input: 'Hello, world!' }),
-
-                        processData: false,
-                        dataType: 'blob-or-json',
-                        contentType: 'application/json',
-                    });
+                    var inputs = $("input");
+                    console.log(makeDict(inputs));
+                    $.post('/request', makeDict(inputs))
+                        
                 }
                 $(document).ready(function () {
 
