@@ -106,7 +106,7 @@ class Question3 < Client
     n2 = STDIN.gets.chomp
     print "[N3] "
     n3 = STDIN.gets.chomp
-    data = {'N1': n1, 'N2': n2, 'N3': n3}
+    data = {'n1': n1, 'n2': n2, 'n3': n3}
     return Message.dumps(data, 3)
   end
 end
