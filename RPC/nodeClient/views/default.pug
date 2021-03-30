@@ -1,0 +1,40 @@
+doctype html
+html
+  head   
+    title #{title}
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous")
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    main
+      block header
+        header.header
+          nav.navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand(href='/') #{title}
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+              span.navbar-toggler-icon
+            
+            .collapse.navbar-collapse(id='navbarSupportedContent')
+              ul.navbar-nav.mr-auto
+                li.nav-item.active
+                  a.nav-link(href='/') Home
+              ul.navbar-nav.float-right
+                li.nav-item
+                  a.nav-link(href='/question?id=1') Question 1
+                li.nav-item
+                  a.nav-link(href='/question?id=2') Question 2
+                li.nav-item
+                  a.nav-link(href='/question?id=3') Question 3
+                li.nav-item
+                  a.nav-link(href='/question?id=4') Question 4
+                li.nav-item
+                  a.nav-link(href='/question?id=5') Question 5
+                li.nav-item
+                  a.nav-link(href='/question?id=6') Question 6
+                li.nav-item
+                  a.nav-link(href='/question?id=7') Question 7
+                li.nav-item
+                  a.nav-link(href='/question?id=8') Question 8
+                li.nav-item
+                  a.nav-link(href='/question?id=9') Question 9
+      block content
