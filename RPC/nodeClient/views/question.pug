@@ -2,6 +2,38 @@ extends default
 
 block content
     div.question
-        div.question-details
-            p.question-description
-            | #{question.description}
+        div(class='question-details', style='text-align:center')
+            h1(class='question-name')
+            | #{question.name}
+            br
+            br  
+            form(action='/request', method='POST')
+                each qu in question.input
+                    div(class="input-group mb-3", style="width: 50%;margin: auto;")
+                      div(class="input-group-prepend")
+                        span(class="input-group-text", id="basic-addon3", style="width:80px;margin:auto") #{qu}
+
+                      input(type="text", class="form-control", id="basic-url", aria-describedby="basic-addon3")
+                    
+                input(type='submit', value='Submit')
+            script.
+
+                function makeRequest() {
+                    $.ajax({
+                        url: 'http://127.0.0.1:8000/request',
+                        method: 'POST',
+                        data: JSON.stringify({ input: 'Hello, world!' }),
+
+                        processData: false,
+                        dataType: 'blob-or-json',
+                        contentType: 'application/json',
+                    });
+                }
+                $(document).ready(function () {
+
+                    $('form').on('submit', function (event) {
+                        event.preventDefault();
+                        makeRequest();
+                    });
+                });
+
