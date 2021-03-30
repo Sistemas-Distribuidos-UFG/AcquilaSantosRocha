@@ -54,7 +54,8 @@ class Server
 
       begin
         result = Solve.new(payload['problem'], payload['data']).run
-      rescue
+      rescue => e
+        puts e
         logger.error "Error while solving the problem. Returning '{}' instead"  if logger
         result = '{}'
       end

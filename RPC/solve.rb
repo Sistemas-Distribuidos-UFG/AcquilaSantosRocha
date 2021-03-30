@@ -38,9 +38,9 @@ class Solve
     res = {}
     m = (data['n1'].to_f + data['n2'].to_f)/2.0
     if (m >= 7.0) or ((m > 3.0 and m < 7.0) and (m + data['n3'].to_f)/2.0 >= 5.0)
-      res = {'aprovado': True}
+      res = {'aprovado': true}
     else
-      res = {'aprovado': False}
+      res = {'aprovado': false}
     end
 
     return res
