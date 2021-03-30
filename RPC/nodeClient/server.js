@@ -37,12 +37,10 @@ app.get('/question', (req, res) => {
 
 
 app.post('/request', (req, res) => {
-    console.log('Got body:', req.body);
     var input = req.body;
     // console.log(res);
     makeRpcRequest(input).then(result => {
-        console.log(result);
-        result = JSON.parse(result);
+       
         // const filename = result.filename;
     });
     res.sendStatus(200);
@@ -51,26 +49,28 @@ app.post('/request', (req, res) => {
 
 function makeRpcRequest(channel, data) {
     const correlationId = uuid();
-    console.log(data);
 
-    function maybeAnswer(message) {
-        if (message.properties.correlationId === correlationId) {
-            deferred.resolve(message.content.toString());
-        }
-    }
+    function maybeAnswer(message) {}
 
     return channel.assertQueue('', { exclusive: true }).then(result => {
         const queue = result.queue;
 
-        return channel.consume(queue, maybeAnswer, { noAck: false }).then(() => {
-
+        channel.consume(queue, (msg) => {
             console.log('Performing RPC request: ' + correlationId);
             console.log(JSON.stringify(data));
-            channel.sendToQueue('rpc_queue', Buffer.from(JSON.stringify(data)), {
-                correlationId: correlationId,
-                replyTo: queue
-            });
-            return deferred.promise; 
+            
+            if ((msg && msg.properties) && msg.properties.correlationId === correlationId) 
+            {
+                console.log("Received from server " + msg.content.toString());
+                result = JSON.parse(msg.content.toString());
+                return msg.content.toString();
+            }
+            
+            // return deferred.promise; 
+        }, {noAck: true});
+        channel.sendToQueue('rpc_queue', Buffer.from(JSON.stringify(data)), {
+            correlationId: correlationId,
+            replyTo: queue
         });
     });
 }
