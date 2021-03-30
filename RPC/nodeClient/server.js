@@ -1,6 +1,7 @@
 const amqp =  require('amqplib');
 const express = require('express');
 const bodyParser = require('body-parser');
+const deferred = require("promise-defer")
 const questions = require("./question.json");
 const uuid = require('node-uuid');
 
@@ -42,7 +43,6 @@ app.post('/request', (req, res) => {
     makeRpcRequest(input).then(result => {
         console.log(result);
         result = JSON.parse(result);
-        console.log(result);
         // const filename = result.filename;
     });
     res.sendStatus(200);
@@ -50,13 +50,19 @@ app.post('/request', (req, res) => {
 
 
 function makeRpcRequest(channel, data) {
-
     const correlationId = uuid();
     console.log(data);
+
+    function maybeAnswer(message) {
+        if (message.properties.correlationId === correlationId) {
+            deferred.resolve(message.content.toString());
+        }
+    }
+
     return channel.assertQueue('', { exclusive: true }).then(result => {
         const queue = result.queue;
 
-        return channel.consume(queue, '', { noAck: true }).then(() => {
+        return channel.consume(queue, maybeAnswer, { noAck: false }).then(() => {
 
             console.log('Performing RPC request: ' + correlationId);
             console.log(JSON.stringify(data));
@@ -64,7 +70,7 @@ function makeRpcRequest(channel, data) {
                 correlationId: correlationId,
                 replyTo: queue
             });
-
+            return deferred.promise; 
         });
     });
 }
