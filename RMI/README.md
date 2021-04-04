@@ -1,4 +1,4 @@
-# RPC in ruby
+# Java RMI
 
 ## Requirements
 - ruby (2.7.0p0)
