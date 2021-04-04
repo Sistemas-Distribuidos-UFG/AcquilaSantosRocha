@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+if(!File.exist?('target/RMI-client.jar'))
+    system("mvn package")
+end
+
+
+system("java -jar target/RMI-client.jar")
