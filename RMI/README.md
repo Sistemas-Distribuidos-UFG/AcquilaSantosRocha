@@ -1,8 +1,5 @@
 # Java RMI
 
-## Requirements
-- ruby (2.7.0p0)
-
 ## Instalation
 Requires [Java](https://java.com/en/download/help/download_options.html)
 
