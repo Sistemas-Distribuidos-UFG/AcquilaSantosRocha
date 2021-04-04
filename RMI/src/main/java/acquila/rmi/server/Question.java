@@ -3,11 +3,7 @@ package acquila.rmi.server;
 import acquila.rmi.comm.IQuestion;
 import java.rmi.RemoteException;
 
-/**
-* Classe que implementa a interface do objeto distribuído
-*
-* http://docente.ifsc.edu.br/mello
-*/
+
 public class Question implements IQuestion{
 
     private String result;
