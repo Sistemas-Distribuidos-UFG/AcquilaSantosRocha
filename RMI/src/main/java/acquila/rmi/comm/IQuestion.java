@@ -3,11 +3,7 @@ package acquila.rmi.comm;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-/**
- * Interface que deve ser compartilhada por servidor e clientes
- *
- * http://docente.ifsc.edu.br/mello
- */
+
 public interface IQuestion extends Remote{
 
     public double solve1(String cargo, double salario) throws RemoteException;
