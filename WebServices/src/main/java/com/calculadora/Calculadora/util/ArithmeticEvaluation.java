@@ -1,3 +1,5 @@
+// Copied from: https://rosettacode.org/wiki/Arithmetic_evaluation
+
 package com.calculadora.Calculadora.util;
 
 import java.util.Stack;

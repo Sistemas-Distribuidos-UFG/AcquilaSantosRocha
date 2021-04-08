@@ -1,3 +1,5 @@
+// Copied from: https://rosettacode.org/wiki/Arithmetic/Rational/Java
+
 package com.calculadora.Calculadora.util;
 import java.math.BigDecimal;
 import java.math.BigInteger;
