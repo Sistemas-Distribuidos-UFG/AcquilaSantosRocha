@@ -1,8 +1,8 @@
-Web Services-Web API Beginner Tutorial
+Web Services
 =====================
 
 
-Topics included/covered
+Tópicos
 =====================
 
 1. [Introdução](#1-introduction-to-web-service)
