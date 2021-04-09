@@ -257,7 +257,6 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
 - **Rápido**: devido a nenhuma especificação estrita como SOAP, REST consome menos largura de banda e recursos
 - **Independente de linguagem e plataforma**: pode ser escrito em qualquer linguagem de programação e executado em qualquer plataforma
 - **Permite diferentes formatos de dados**: Texto Simples, HTML, XML e JSON
-- **Pode usar SOAP**: os serviços da Web RESTful podem usar a API / serviços da Web SOAP como implementação
 
 4 SOAP Vs REST
 =====================
