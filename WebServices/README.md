@@ -173,6 +173,7 @@ Existem duas categorias de especificações de SOAP Web Services: básica e este
      - Web Services Security (WS-Security)
      - Web Services Policy (WS-Policy)
 
+![image info](./img/jax_SOAP.gif)
 
 2.2. Desvantagens do SOAP
 ---------------------
