@@ -152,6 +152,7 @@ Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 - SOAP (Simple Object Access Protocol), uma recomendação W3C para comunicação entre dois aplicativos
 - SOAP é um protocolo baseado em XML para acessar serviços da web em HTTP
 - Qualquer serviço web que obedeça e siga as **especificações de serviços da Web SOAP** é um serviço da Web SOAP
+- Em detalhes: https://docs.oracle.com/cd/E19340-01/820-6767/aeqfx/index.html
 
 2.2. Introdução ao SOAP
 ---------------------
