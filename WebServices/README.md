@@ -1,6 +1,17 @@
 Web Services
 =====================
 
+Executar o web service
+=====================
+
+Instale as dependências
+```ssh
+mvn clean install
+```
+Suba o serviço
+```ssh
+mvn jetty:run
+```
 
 Tópicos
 =====================
