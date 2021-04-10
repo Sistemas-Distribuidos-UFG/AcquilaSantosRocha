@@ -136,12 +136,12 @@ Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 
 2. **`WSDL (Web Services Description Language)`**:
     - WSDL é uma linguagem baseada em XML para descrever serviços da web e como acessá-los
-    - É uma interface baseada em XML para os Web Services que descreve todos os atributos e funcionalidades, nome do método / parâmetro do Web Service publicado por todos os Provedores de Serviços
-    - WSDL é o formato padrão para descrever um serviço da web que UDDI usa
+    - É uma interface baseada em XML para os Web Services que descreve todos os atributos e funcionalidades, nome do método/parâmetro do Web Service publicado
+    - WSDL é o formato padrão para descrever um serviço da web que usa UDDI
 
-3. **`UDDI (descrição universal, descoberta e integração)`**:
-    - UDDI é um padrão baseado em XML para descrever, publicar, encontrar/descobrir e integrar serviços da web
-    - Um provedor de serviços da web publica seu serviço da web por meio de WSDL em um diretório / registro online de onde os consumidores podem consultar e pesquisar os serviços da web
+3. **`UDDI (Universal Description, Discovery, and Integration)`**:
+    - UDDI é um padrão baseado em XML para descrever, publicar, encontrar/descobrir e integrar Web Services
+    - Um provedor de serviços da web publica seu serviço da web por meio de WSDL em um diretório/registro online de onde os consumidores podem consultar e pesquisar os serviços
     - UDDI é uma estrutura aberta e independente de plataforma que pode se comunicar via protocolo SOAP, CORBA e Java RMI
 
 
@@ -225,12 +225,10 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
     - Todas as comunicações cliente-servidor são sem estado
     - No caso de REST, o servidor não mantém nenhum estado do sistema e o cliente deve enviar uma solicitação completa (toda solicitação será independente e não dependerá de nenhuma solicitação anterior)
     - Cada solicitação do cliente ao servidor deve conter todos os dados necessários para tratar a solicitação, sem necessidade de armazenar nenhum dado no servidor
-    - Um servidor não deve exigir o armazenamento do estado de uma sessão
-    - Como o servidor não armazena dados antigos / passados ​​/ indesejados, melhora o desempenho do serviço da web
 4. **Cache**:
     - O cache acontece no lado do cliente
     - O cliente usa o cabeçalho **Cache-Control** para determinar se deve armazenar o recurso em cache (fazer uma cópia local) ou não
-    - O servidor gera respostas que indicam se eles podem ser armazenados em cache ou não para melhorar o desempenho, reduzindo o número de solicitações de recursos duplicados [faz isso com a ajuda de **Cache-Control** e **Last-Modified (valor de data)**]
+    - O servidor gera respostas que indicam se eles podem ser armazenados em cache ou não para melhorar o desempenho, reduzindo o número de solicitações de recursos duplicados faz isso com a ajuda de **Cache-Control** e **Last-Modified (valor de data)**
 5. **Sistema em camadas**:
     - Podem existir várias camadas entre o cliente e o servidor
     - As camadas podem incluir **Proxies**, **Gateways**, **Cache**, eles são intermediários HTTP
