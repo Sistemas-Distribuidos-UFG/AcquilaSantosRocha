@@ -285,9 +285,19 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
 | SOAP is **`less preferred`** than REST   | REST IS **`more preferred`** than SOAP |
 
 
+5 Apêndice
+=====================
 
+5.1 Service Oriented Architecture (SOA)
+---------------------
 ![image info](./img/afterBeforeSOA.png) 
+
+5.2 Micro Serviços
+---------------------
 ![deathstart](./img/AmazonandNetflixDeathStar.jpeg)
+
+5.2.1 Amazon Web Services (AWS)
+---------------------
 ![deathstart](./img/awsExample.png)
 
 [Texto adaptado](https://github.com/dinanathsj29/web-services-web-api-soap-rest-tutorial)
