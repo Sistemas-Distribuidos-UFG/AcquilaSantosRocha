@@ -153,7 +153,7 @@ Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 
 - SOAP (Simple Object Access Protocol), uma recomendação W3C para comunicação entre dois aplicativos
 - SOAP é um protocolo baseado em XML para acessar serviços da web em HTTP
-- Qualquer serviço da Web que obedeça e siga algumas diretrizes que são conduzidas por ** especificações de serviços da Web SOAP ** é um serviço da Web SOAP
+- Qualquer serviço web que obedeça e siga as **especificações de serviços da Web SOAP** é um serviço da Web SOAP
 
 2.2. Introdução ao SOAP
 ---------------------
@@ -171,7 +171,7 @@ Existem duas categorias de especificações de SOAP Web Services: básica e este
      - **UDDI (Universal Description, Discovery, and Integration)**
 2. Estendido
      - Web Services Security (WS-Security)
-    - Web Services Policy (WS-Policy)
+     - Web Services Policy (WS-Policy)
 
 
 2.2. Desvantagens do SOAP
