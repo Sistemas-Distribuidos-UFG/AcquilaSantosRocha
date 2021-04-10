@@ -288,6 +288,7 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
 
 ![image info](./img/afterBeforeSOA.png) 
 ![deathstart](./img/AmazonandNetflixDeathStar.jpeg)
+![deathstart](./img/awsExample.png)
 
 [Texto adaptado](https://github.com/dinanathsj29/web-services-web-api-soap-rest-tutorial)
 
