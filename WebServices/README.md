@@ -104,10 +104,10 @@ Explicação usando como base o SOAP:
 
 1.6. Tipos de Web Service
 ---------------------
-Existem **principalmente** duas maneiras de implementar Web Services, os protocolos de serviços da Web populares são:
+Destacamos duas maneiras de implementar Web Services, os protocolos de serviços da Web populares são:
 
-1. **`SOAP Web Services`**: `(Simple Object Access Protocol)`: [ *Medium*: HTTP (post), *Format*: XML ]
-2. **`REST Web Services`**: `(REpresentational State Transfer)`: [ *Medium*: HTTP (get, post, put, delete), *Format*: XML/JSON/Text ]
+1. **`SOAP Web Services (Simple Object Access Protocol)`**: [*Medium*: HTTP (post), *Format*: XML]
+2. **`REST Web Services (REpresentational State Transfer)`**: [*Medium*: HTTP (get, post, put, delete), *Format*: XML/JSON/Text]
 
 
 1.7. Componentes
