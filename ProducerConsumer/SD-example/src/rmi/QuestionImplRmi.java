@@ -11,42 +11,42 @@ public class QuestionImplRmi implements QuestionRmiInterface {
     }
 
     @Override
-    public void  ProduceQuestion1(String cargo, double salario) throws RemoteException {
-        instance.ProduceQuestion1(cargo, salario);
+    public void  ProduceA() throws RemoteException {
+        instance.ProduceA();
     }
 
     @Override
-    public void  ProduceQuestion4(String cargo, double salario) throws RemoteException {
-        instance.ProduceQuestion4(cargo, salario);
+    public void  ProduceB() throws RemoteException {
+        instance.ProduceB();
     }
 
     @Override
-    public void  ConsumeQuestion1() throws RemoteException {
-        instance.ConsumeQuestion1();
+    public void  ConsumeA() throws RemoteException {
+        instance.ConsumeA();
     }
 
     @Override
-    public void  ConsumeQuestion4() throws RemoteException {
-        instance.ConsumeQuestion4();
+    public void  ConsumeB() throws RemoteException {
+        instance.ConsumeB();
     }
 
     @Override
-    public int  GetQtdQuestion1Consumers() throws RemoteException {
-        return instance.GetQtdQuestion1Consumers();
+    public int  GetQtdAConsumers() throws RemoteException {
+        return instance.GetQtdAConsumers();
     }
 
     @Override
-    public int  GetQtdQuestion4Consumers() throws RemoteException {
-        return instance.GetQtdQuestion4Consumers();
+    public int  GetQtdBConsumers() throws RemoteException {
+        return instance.GetQtdBConsumers();
     }
 
     @Override
-    public int  GetQtdQuestion1Producers() throws RemoteException {
-        return instance.GetQtdQuestion1Producers();
+    public int  GetQtdAProducers() throws RemoteException {
+        return instance.GetQtdAProducers();
     }
 
     @Override
-    public int  GetQtdQuestion4Producers() throws RemoteException {
-        return instance.GetQtdQuestion4Producers();
+    public int  GetQtdBProducers() throws RemoteException {
+        return instance.GetQtdBProducers();
     }
 }
