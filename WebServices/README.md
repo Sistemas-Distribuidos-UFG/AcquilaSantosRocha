@@ -64,7 +64,7 @@ Tópicos
 - **`Possui a capacidade de expor funcionalidades`** para outras aplicações existentes na rede 
 - **`Interoperabilidade`** entre os aplicativos (Web Services permitem que vários aplicativos conversem/compartilhem dados e serviços entre si).
 - Usam um **`protocolo padronizado`** para prover uma comunicação que todos entendam.
-- **`Redução de custo`** de comunicação/Comunicação de baixo custo.
+- **`Redução de custo`** de comunicação de baixo custo.
 
 1.3. Arquitetura de um Web service
 ---------------------
