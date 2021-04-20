@@ -104,8 +104,8 @@ Explicação usando como base o SOAP:
 ---------------------
 Destacamos duas maneiras de implementar Web Services, os protocolos de serviços da Web populares são:
 
-1. **`SOAP Web Services (Simple Object Access Protocol)`**: [*Medium*: HTTP (post), *Format*: XML]
-2. **`REST Web Services (REpresentational State Transfer)`**: [*Medium*: HTTP (get, post, put, delete), *Format*: XML/JSON/Text]
+1. **`SOAP Web Services (Simple Object Access Protocol)`**: *Meio*: HTTP (post), *Formato*: XML
+2. **`REST Web Services (REpresentational State Transfer)`**: *Meio*: HTTP (get, post, put, delete), *Formato*: XML/JSON/Text
 
 
 1.7. Componentes
