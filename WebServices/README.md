@@ -35,7 +35,6 @@ Tópicos
     - 3.3. [Princípios da REST API](#33-principles-of-rest-api)
     - 3.4. [Características da REST API](#34-features-of-rest-api)
     - 3.5. [Métodos da REST API](#35-methods-of-rest-api)
-    - 3.6. [Vantagens da REST API](#36-advantages-of-rest-api)
 
 4. [SOAP Vs REST](#4-soap-vs-rest)
     - 4.1. [SOAP vs REST Web Services](#41-soap-vs-rest-web-services)
@@ -81,7 +80,6 @@ A arquitetura de serviços dos Web Services consiste em três funções distinta
 
 - **`Fracamente Acoplado`**: Cliente/Consumidor e o serviço não são fixos/vinculados um ao outro diretamente.
 - **`Síncrono ou assíncrono`**: a sincronicidade especifica a vinculação do cliente à execução da função, os clientes assíncronos buscam seu resultado em um momento posterior, enquanto os clientes síncronos recebem seu efeito quando o serviço tem completado.
-- **`Suporta RPC`**: os Web Services permitem que os consumidores invoquem procedimentos, funções e métodos em objetos remotos usando um protocolo RPC baseado em XML. 
 
 
 
@@ -112,7 +110,7 @@ Destacamos duas maneiras de implementar Web Services, os protocolos de serviços
 
 1.7. Componentes
 ---------------------
-1.7. Componentes: SOAP, WSDL, and UDDI
+1.7. Componentes: WSDL, and UDDI
 ---------------------
 
 
@@ -127,17 +125,12 @@ Ao consumir Web Services, o cliente precisa saber:
 
 Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 
-1. **`SOAP (Simple Object Access Protocol)`**:
-    - SOAP é uma recomendação W3C para comunicação entre aplicativos e formato para envio de mensagens
-    - SOAP é um protocolo baseado em XML para acessar serviços da web e para trocar informações entre aplicações
-    - SOAP é simples e extensível também uma plataforma, independente de linguagem
-
-2. **`WSDL (Web Services Description Language)`**:
+1. **`WSDL (Web Services Description Language)`**:
     - WSDL é uma linguagem baseada em XML para descrever serviços da web e como acessá-los
     - É uma interface baseada em XML para os Web Services que descreve todos os atributos e funcionalidades, nome do método/parâmetro do Web Service publicado
     - WSDL é o formato padrão para descrever um serviço da web que usa UDDI
 
-3. **`UDDI (Universal Description, Discovery, and Integration)`**:
+2. **`UDDI (Universal Description, Discovery, and Integration)`**:
     - UDDI é um padrão baseado em XML para descrever, publicar, encontrar/descobrir e integrar Web Services
     - Um provedor de serviços da web publica seu serviço da web por meio de WSDL em um diretório/registro online de onde os consumidores podem consultar e pesquisar os serviços
     - UDDI é uma estrutura aberta e independente de plataforma que pode se comunicar via protocolo SOAP, CORBA e Java RMI
@@ -146,7 +139,7 @@ Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 2 Introdução ao SOAP
 =====================
 
-2.1. O que são SOAP Web Services?
+2.1. O que é SOAP ?
 ---------------------
 
 - SOAP (Simple Object Access Protocol), uma recomendação W3C para comunicação entre dois aplicativos
@@ -154,10 +147,10 @@ Normalmente os Web Services funcionam usando  alguns dos seguintes componentes:
 - Qualquer serviço web que obedeça e siga as **especificações de serviços da Web SOAP** é um serviço da Web SOAP
 - Em detalhes: https://docs.oracle.com/cd/E19340-01/820-6767/aeqfx/index.html
 
-2.2. Introdução ao SOAP
+2.2. Descrição
 ---------------------
 
-Existem duas categorias de especificações de SOAP Web Services: básica e estendida.
+Existem duas categorias de especificações de SOAP: básica e estendida.
 1. Básico
      - **SOAP**
        - Protocolo / Regras / Definições relacionadas a como dois aplicativos diferentes se comunicam na web
@@ -187,7 +180,7 @@ Existem duas categorias de especificações de SOAP Web Services: básica e este
 ---------------------
 - REST (REpresentational State Transfer) 
 - REST é uma arquitetura ou estilo arquitetural
- - REST não é um protocolo, 
+- REST não é um protocolo, 
 - REST é um princípio de design, pode-se usar alguns métodos de design para criar um serviço (**RESTful Web Services**)
 
 REST é um estilo de arquitetura, bem como uma abordagem para fins de comunicação que é frequentemente usado no desenvolvimento de vários serviços na web
@@ -238,13 +231,13 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
     - Capacidade de baixar e executar código no lado do cliente
 
 
-3.4. Features of REST API
+3.4. Features da API REST
 ---------------------
 - Mais simples do que a API SOAP
 - Documentação adequada disponível
 - Lança/registra mensagens de erro adequadas
 
-3.5. Methods of REST API
+3.5. Métodos da API REST
 ---------------------
 
 <pre>
@@ -259,13 +252,6 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
 3. **`PUT`** - Atualiza os dados
 4. **`DELETE`** - Deleta todos os dados
 
-
-3.6. Vantagens da REST API
----------------------
-
-- **Rápido**: devido a nenhuma especificação estrita como SOAP, REST consome menos largura de banda e recursos
-- **Independente de linguagem e plataforma**: pode ser escrito em qualquer linguagem de programação e executado em qualquer plataforma
-- **Permite diferentes formatos de dados**: Texto Simples, HTML, XML e JSON
 
 4 SOAP Vs REST
 =====================
@@ -282,8 +268,6 @@ Existem muitos princípios/restrições da arquitetura REST que um serviço Web 
 | SOAP requires **`more bandwidth and resource`** than REST | REST requires **`less bandwidth and resource`** than SOAP |
 | SOAP is **`slow`** as compared to REST | REST is **`fast`** as compared to SOAP |
 | SOAP permits **`XML`** data format only | REST permits different data format such as **`Plain text, HTML, JSON, XML`** etc. |
-| SOAP is **`less preferred`** than REST   | REST IS **`more preferred`** than SOAP |
-
 
 5 Apêndice
 =====================
