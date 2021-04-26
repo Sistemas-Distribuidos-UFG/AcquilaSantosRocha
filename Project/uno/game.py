@@ -2,6 +2,9 @@ import pygame, random, json, logging
 
 from uno.player import Player
 from uno.board import Board
+
+from uno.objects.card import Card
+
 from util import convert2serialize
 
 logger = logging.getLogger(__name__)
@@ -15,6 +18,7 @@ class Game:
         self.maxPlayerPerGame = 4
         self.player = Player(self.peer_id, self.host)
         self.board:Board = Board("board_"+str(game_id))
+        self.player.setNewBoard(self.board)
         self.board.turn_iterator = 1
         self.turn = 0
         self.turn_tot = 0
@@ -36,7 +40,7 @@ class Game:
 
     def _setFakeGame(self):
         for _ in range(3):
-            self.players.append(self._newFakePlayer())
+            self.players.append(self._newFakePlayer().setNewBoard(self.board))
 
     def fullRoom(self):
         if self.gameRoomSize == self.maxPlayerPerGame:
@@ -66,6 +70,7 @@ class Game:
         return convert2serialize(self)
 
     def run(self):
+        
         while True:
             turn = self.turn
             self.turn_tot = 0
@@ -75,8 +80,8 @@ class Game:
                 logger.info("Skipping player turn")
                 self.player.skip = False
             else:
-                # self.player.play()
-                pass
+                self.player.play()
+                
         
 
 

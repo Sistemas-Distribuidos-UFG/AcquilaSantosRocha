@@ -6,6 +6,7 @@ import argparse
 from uno.game import Game
 from uno.config import get_config
 
+from uno.pygame.display import redraw_hand_visble
 
 
 logger = logging.getLogger(__name__)
@@ -83,10 +84,9 @@ def main():
 
     game = Game( args.host, args.game, args.peer)
     
+    redraw_hand_visble(game.player, None)
+
     game.run()
-
-    
-
 
 if __name__ == "__main__":
     main()

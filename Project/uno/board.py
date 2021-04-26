@@ -7,7 +7,11 @@ class Board:
         self.cards:dict = {}
         self.top:Card = None
         self.turn_iterator = 1
+        self.type = None
+        self.color = None
 
-    def update_Board(self, card:Card):
+    def updateBoard(self, card:Card):
         self.cards[card.id] = card
         self.top = card
+        self.type = card.properties.type
+        self.color = card.properties.color

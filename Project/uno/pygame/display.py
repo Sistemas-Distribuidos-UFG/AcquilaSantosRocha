@@ -99,8 +99,8 @@ def draw_top_stack_card(board:Board):
 
     O(1) runtime
     """
-    if board.cards != []:
-        top_card = board.cards[-1]
+    if board.cards != {}:
+        top_card:Card = board.top
         top_card.rect = def_rect
         top_card.rect = top_card.rect.move(
             (screen_width - card_width) // 2,
@@ -123,19 +123,19 @@ def redraw_hand_visble(player, selected=None):
     # card_disp.rect = card_disp.rect.move(0, screen_height - card_height)
 
     # dynamic card spacing
-    player_handsize = len(player.hand)
+    player_handsize = len(player.hand.cardsList())
     if player_handsize <= 9:
         iterating_fact = 100
     else:
         iterating_fact = (3 * (screen_width // 4)) // player_handsize
 
     # get a "middle" start postion for bliting cards
-    start_pos = (screen_width - 100 * len(player.hand)) // 2
+    start_pos = (screen_width - 100 * len(player.hand.cardsList())) // 2
     if start_pos < 150:
         start_pos = 150
 
     card_index = 0
-    for card in player.hand:  # O(n)
+    for card in player.hand.cardsList():  # O(n)
         card.rect = def_rect
         if card_index == selected:
             card.rect = card.rect.move(start_pos, 600)

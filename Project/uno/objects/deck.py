@@ -12,6 +12,8 @@ class Deck:
         self.size:int = size
         self.generateRandomHand()
         
+    def cardsList(self) -> list:
+        return list(self.cards.values())
 
     def generateRandomHand(self) -> None:
         for _ in range(self.size):
