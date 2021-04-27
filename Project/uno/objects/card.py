@@ -18,7 +18,10 @@ class Card:
         if not filename:
             self.getRandomCard()
         else:
-            self.filename = filename
+            logger.debug("Creating card {}".format(self.id))
+            self.properties = Properties(filename)
+            self.data = pygame.image.load(self.properties.filename)
+            self.rect = self.data.get_rect()
 
     def getRandomCard(self):
         logger.debug("Creating card {}".format(self.id))

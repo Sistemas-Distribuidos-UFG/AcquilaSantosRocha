@@ -178,11 +178,11 @@ def player_choice_target(players):
             target = players[selected]
             return target
 
-def select_choose(player, board, selected=0):
+def select_choose(player, board, selected:Card):
     """
     O(1) runtime
     """
-    player.play_card(board, selected)
+    player.playCard(selected.id)
     selected = None
     return selected
 
@@ -227,7 +227,6 @@ def player_LR_selection_hand(player, selected, board=None, allowed_card_list=Non
 
         selectednew = select_move_hand(
             select_L, select_R, allowed_card_list, selected) # O(1)
-
         if selected == selectednew:
             pass
         else:
@@ -241,9 +240,9 @@ def player_LR_selection_hand(player, selected, board=None, allowed_card_list=Non
         # catch for index nonetype error in allowed_card_list
         if selected is None:
             selected = 0
-
+        
         selected = select_choose(player, board, allowed_card_list[selected]) # O(1)
         update = True
         turn_done = True
-
+    
     return (update, selected, turn_done)

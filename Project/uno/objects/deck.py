@@ -24,6 +24,7 @@ class Deck:
         if cid in self.cards:
             card = self.cards[cid]
             self.cards.pop(cid, None)
+            self.size -= 1
             return card
             
         return None

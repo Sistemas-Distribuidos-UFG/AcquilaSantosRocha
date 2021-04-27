@@ -9,11 +9,12 @@ class Properties:
     colors = ["blue", "red", "green", "yellow"]
     card_types = ["color_changer", "pick_four", "picker", "skip", "reverse", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    def __init__(self):
+    def __init__(self, filename:str=None):
         self.color:str = None
         self.type:str = None
-        self.filename:str = None
-        self._getRandom()
+        self.filename:str = filename
+        if not filename:
+            self._getRandom()
 
     def _getRandomColor(self):
         self.color = choice(Properties.colors)

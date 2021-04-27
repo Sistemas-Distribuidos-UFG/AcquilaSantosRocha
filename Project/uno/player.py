@@ -22,28 +22,34 @@ class Player:
         logger.info("Associating board {} to player".format(board.name))
         self.board = board
 
-    def play(self):
+    def play(self, selected = None):
         update = False
-        allowed_card_list:list[Card] = self.getValidCards()
-
+        allowed_card_list = self.getValidCards()
         if allowed_card_list == []:
-            player.grab_card(deck)
+            self.grabCards()
             selected = None
             update = True
             turn_done = True
-            return (update, selected, turn_done)
+            return (selected, None, turn_done, update)
         
-        while not update:
-            (update, selected, turn_done) = player_LR_selection_hand(self, None, self.board, allowed_card_list)
-
-        card = self.hand.playCardFromHand(allowed_card_list[selected].id)
-
-        logger.info("Played ({},{},{})".format(card.id, card.properties.type, card.properties.color))
-
-        return (update, card, turn_done)
+        
+        (update, selected, turn_done) = player_LR_selection_hand(self, selected, self.board, allowed_card_list)
+        card = None
+        if update and selected != None:
+            card_selected = allowed_card_list[selected]
+            if turn_done:
+                card = self.hand.playCardFromHand(card_selected.id)
+                logger.info("Played ({},{},{})".format(card.id, card.properties.type, card.properties.color))
+            else:
+                logger.info("Hovering card ({},{},{})".format(card_selected.id, card_selected.properties.type, card_selected.properties.color))
+            
+        return (selected, card, turn_done, update)
 
     def playCard(self, card_id):
+        card = self.hand.cards[card_id]
+        logger.info("Playng card ({},{},{})".format(card.id, card.properties.type, card.properties.color))
         card = self.hand.playCardFromHand(card_id)
+        self.board.updateBoard(card)
 
 
     def getValidCards(self):
@@ -51,7 +57,7 @@ class Player:
         board = self.board
         for card in self.hand.cardsList():
             if board.cards == {} or board.color == None:
-                allow = range(len(self.hand.cardsList()))
+                allow = self.hand.cardsList()
                 break
             elif card.canPlayWild() or card.canPlay(board.color, board.type):
                 allow.append(card)

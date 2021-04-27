@@ -2,7 +2,7 @@ import pygame, random, json, logging
 
 from uno.player import Player
 from uno.board import Board
-
+from uno.pygame.display import redraw_screen
 from uno.objects.card import Card
 
 from util import convert2serialize
@@ -40,7 +40,9 @@ class Game:
 
     def _setFakeGame(self):
         for _ in range(3):
-            self.players.append(self._newFakePlayer().setNewBoard(self.board))
+            newplayer = self._newFakePlayer()
+            newplayer.setNewBoard(self.board)
+            self.players.append(newplayer)
 
     def fullRoom(self):
         if self.gameRoomSize == self.maxPlayerPerGame:
@@ -69,18 +71,35 @@ class Game:
             return json.dumps(convert2serialize(self))
         return convert2serialize(self)
 
+    def checkUpdate(self, allowed_card_list, selected, update):
+        if update:
+            update = False
+            if selected is None:
+                redraw_screen([(self.player, None)], self.board, self.players)
+            else:
+                redraw_screen([(self.player, allowed_card_list[selected])], self.board, self.players)
+        return update
+
     def run(self):
-        
+        selected = None
+        card = None
+        turn_done = None
+        update = True
+
         while True:
             turn = self.turn
             self.turn_tot = 0
             self.player_turn = self.players[turn]
 
+            self.checkUpdate(self.player.getValidCards(), selected, update)
+
             if self.player.skip:
                 logger.info("Skipping player turn")
                 self.player.skip = False
             else:
-                self.player.play()
+                (selected, card, turn_done, update) = self.player.play(selected)
+
+            
                 
         
 

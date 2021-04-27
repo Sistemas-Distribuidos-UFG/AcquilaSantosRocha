@@ -4,6 +4,7 @@ import sys
 import argparse
 
 from uno.game import Game
+from uno.objects.card import Card
 from uno.config import get_config
 
 from uno.pygame.display import redraw_hand_visble
@@ -83,7 +84,7 @@ def main():
                 args.game, args.peer)
 
     game = Game( args.host, args.game, args.peer)
-    
+    # game.board.updateBoard(Card())
     redraw_hand_visble(game.player, None)
 
     game.run()

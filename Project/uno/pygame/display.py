@@ -37,7 +37,7 @@ def_rect = pygame.Rect(0, 0, card_width, card_height)
 
 # defining the default facedown card value
 face_down_card = Card(
-    "face_down", "small_cards/card_back.png", None)
+    "face_down", "small_cards/card_back_alt.png", None)
 
 
 def handle_resize(event):
@@ -107,7 +107,7 @@ def draw_top_stack_card(board:Board):
             (screen_height - card_height) // 2)
 
         # blit top card of board onto center screen
-        scale_card_blit(top_card.card_data, top_card.rect)
+        scale_card_blit(top_card.data, top_card.rect)
 
 
 def redraw_hand_visble(player, selected=None):
@@ -137,7 +137,7 @@ def redraw_hand_visble(player, selected=None):
     card_index = 0
     for card in player.hand.cardsList():  # O(n)
         card.rect = def_rect
-        if card_index == selected:
+        if player.hand.cardsList()[card_index] == selected:
             card.rect = card.rect.move(start_pos, 600)
         else:
             card.rect = card.rect.move(start_pos, 700)
@@ -164,14 +164,14 @@ def redraw_hand_nonvisble(player, start_horz, start_vert=0):
     # card_disp.rect = card_disp.rect.move(start_horz, start_vert)
 
     # dynamic card spacing
-    player_handsize = len(player.hand)
+    player_handsize = len(player.hand.cardsList())
     if player_handsize <= 7:
         iterating_fact = 80
     else:
         iterating_fact = 550 // player_handsize
 
     card_index = 0
-    for card in player.hand:  # O(n)
+    for card in player.hand.cardsList():  # O(n)
         card.rect = def_rect
         card.rect = card.rect.move(start_horz, start_vert)
         card.rect = card.rect.move(iterating_fact * card_index, 0)
@@ -199,12 +199,12 @@ def redraw_hand_nonvisble_loop(players_temp):
     # draw all active other hands in nice other places in the screen
     for player in players_temp:  # O(m*n)
 
-        if len(player.hand) == 0:
+        if len(player.hand.cardsList()) == 0:
             hand_size = card_width
-        elif len(player.hand) > 7:
+        elif len(player.hand.cardsList()) > 7:
             hand_size = (80 * 7) + (card_width - 80)
         else:
-            hand_size = (80 * len(player.hand)) + (card_width - 80)
+            hand_size = (80 * len(player.hand.cardsList())) + (card_width - 80)
 
         if loop_iteration == 1:
             start_horz = screen_width - hand_size
@@ -255,49 +255,49 @@ def redraw_screen(player_you, board, players_other):
     pygame.display.flip()  # O(1)?
 
 
-# def redraw_screen_menu_color(selected=None):
-#     """
-#     Draws a simple color menu with placeholder graphics.
+def redraw_screen_menu_color(selected=None):
+    """
+    Draws a simple color menu with placeholder graphics.
 
-#     Function clears the top half of the screen and clears display of nonvisible
-#     hands while it runs.
+    Function clears the top half of the screen and clears display of nonvisible
+    hands while it runs.
 
-#     O(1) runtime as the number of colors is 4 thus the for loop only runs
-#     4 times thus being negligible
-#     """
-#     # zero input catch
-#     if selected is None:
-#         selected = 0
+    O(1) runtime as the number of colors is 4 thus the for loop only runs
+    4 times thus being negligible
+    """
+    # zero input catch
+    if selected is None:
+        selected = 0
 
-#     # clear screen
-#     pygame.draw.rect(
-#         screen, black, (0, 0, screen_width, int(600 * scale_y)), 0)
+    # clear screen
+    pygame.draw.rect(
+        screen, black, (0, 0, screen_width, int(600 * scale_y)), 0)
 
-#     # get a "middle" start postion for bliting cards
-#     start_pos = ((screen_width) // 2) - ((300 * 2 + card_width) // 2)
+    # get a "middle" start postion for bliting cards
+    start_pos = ((screen_width) // 2) - ((300 * 2 + card_width) // 2)
 
-#     # placeholders for color slection graphics
-#     card_g = Card("green", "small_cards/green_0.png", None)
-#     card_b = Card("blue", "small_cards/blue_0.png", None)
-#     card_y = Card("yellow", "small_cards/yellow_0.png", None)
-#     card_r = Card("red", "small_cards/red_0.png", None)
+    # placeholders for color slection graphics
+    card_g = Card("green", "small_cards/green_0.png", None)
+    card_b = Card("blue", "small_cards/blue_0.png", None)
+    card_y = Card("yellow", "small_cards/yellow_0.png", None)
+    card_r = Card("red", "small_cards/red_0.png", None)
 
-#     color_array = [card_g, card_b, card_y, card_r]
-#     color_index = 0
-#     for card_c in color_array:  # O(4)
-#         card_c.rect = def_rect
-#         if color_index == selected:
-#             card_c.rect = card_c.rect.move(start_pos, 200)
-#         else:
-#             card_c.rect = card_c.rect.move(start_pos, 300)
+    color_array = [card_g, card_b, card_y, card_r]
+    color_index = 0
+    for card_c in color_array:  # O(4)
+        card_c.rect = def_rect
+        if color_index == selected:
+            card_c.rect = card_c.rect.move(start_pos, 200)
+        else:
+            card_c.rect = card_c.rect.move(start_pos, 300)
 
-#         card_c.rect = card_c.rect.move(200 * color_index, 0)
-#         scale_card_blit(card_c.card_data, card_c.rect)
+        card_c.rect = card_c.rect.move(200 * color_index, 0)
+        scale_card_blit(card_c.data, card_c.rect)
 
-#         color_index += 1
+        color_index += 1
 
-#     # refresh the screen
-#     pygame.display.flip()
+    # refresh the screen
+    pygame.display.flip()
 
 
 def redraw_screen_menu_target(players, selected=None):
@@ -365,7 +365,7 @@ def draw_winners(winners):
         card_disp.rect = def_rect
         card_disp.rect = card_disp.rect.move(start_pos, 300)
         card_disp.rect = card_disp.rect.move(200 * target_index, 0)
-        scale_card_blit(card_disp.card_data, card_disp.rect)
+        scale_card_blit(card_disp.data, card_disp.rect)
 
         target_index += 1
 
